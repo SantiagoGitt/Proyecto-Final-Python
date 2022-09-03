@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from APP_Libreria.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("clientes/", clientes),
+    path("empleados/", empleados),
+    path("stock/", stock),
+    path("resenia/", resenia),
 ]
