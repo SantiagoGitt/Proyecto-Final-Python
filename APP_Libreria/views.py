@@ -6,16 +6,16 @@ from APP_Libreria.models import *
 # Create your views here.
 
 def inicio(request):
-    return HttpResponse("Inicio")
+    return render(request, "inicio.html")
 
 def clientes(request):
-    return HttpResponse("Clientes")
+    return render(request, "clientes.html")
 
 def empleados(request):
-    return HttpResponse("Empleados")
+    return render(request, "empleados.html")
 
 def stock(request):
-    return HttpResponse("Stock")
+    return render(request, "stock.html")
 
 def resenia(request):
-    return HttpResponse("Resenia")
+    return render(request, "resenia.html")
