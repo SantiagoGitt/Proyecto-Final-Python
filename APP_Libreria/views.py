@@ -5,6 +5,9 @@ from APP_Libreria.models import *
 
 # Create your views here.
 
+def inicio(request):
+    return HttpResponse("Inicio")
+
 def clientes(request):
     return HttpResponse("Clientes")
 
