@@ -11,6 +11,24 @@ def inicio(request):
     return render(request, "inicio.html")
 
 def clientes(request):
+    if request.method == 'POST':
+        form=ClienteForm()
+        print("--------------------------------------")
+        print(form)
+        print("--------------------------------------")
+        if form.is_valid():
+            informacion=form.cleande_data
+            print(informacion)
+            nombre=informacion["nombre"]
+            correo=informacion["correo"]
+            cumpleanios=informacion["cumpleanios"]
+            cliente=Clientes(nombre=nombre, correo=correo, cumpleanios=cumpleanios)
+            cliente.save()
+            return render(request, "stock.html")
+
+    else:
+        formulario=ClienteForm()
+        return render(request, "clientes.html", {"formulario":formulario})
     return render(request, "clientes.html")
 
 def empleados(request):
@@ -23,13 +41,4 @@ def resenia(request):
     return render(request, "resenia.html")
 
 def clienteFormulario(request):
-        if request.method=="POST":
-            form= clienteFormulario(request.POST)
-        if form.is_valid():
-            info= form.cleaned_data
-            nombre= info["nombre"]
-            mail= info["correo"]
-            fechadenacimiento= info["YYYY-MM-DD"]
-            clientes= Clientes(nombre=nombre, correo=correo, fecha_de_nacimiento=fechadenacimiento)
-            clientes.save()
-            return render (request, "templates/inicio.html", {"mensaje":"Cliente creado"})
+    return render (request, "cursos.html")

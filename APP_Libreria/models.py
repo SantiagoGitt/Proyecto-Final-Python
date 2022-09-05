@@ -4,8 +4,8 @@ from django.db import models
 
 class Clientes(models.Model):
     nombre = models.CharField(max_length=64)
-    correo = models.EmailField()
-    cumpleanios = models.DateField()
+    correo = models.CharField(max_length=64)
+    cumpleanios = models.CharField(max_length=64)
 
 class Empleados(models.Model):
     nombre = models.CharField(max_length=64)

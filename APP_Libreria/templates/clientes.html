@@ -1,11 +1,12 @@
 {% extends 'inicio.html' %}
 {% load static %}
 {% block libreria %}
- <form action="{% url 'clientes' %}" method="POST">{% csrf_token %}
-        <p>nombre:<input type="text" name="nombre"></p>
-        <p>correo:<input type="text" name="correo"></p>
-        <p>fecha_de_nacimiento: <input type="text" name="YYYY-MM-DD"></p>
-    <input type="submit" value="Enviar">
-
- </form>
+<p></p>
+<form action="{% url 'clientes' %}" method="post"> {% csrf_token %}
+    <table>
+        {{ formulario.as_table }}
+    </table>
+<input style = "margin-left: 200px" type="submit" name="Enviar">
+</form>
+<p></p>
 {% endblock %}
