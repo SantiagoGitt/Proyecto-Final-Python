@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from APP_Libreria.models import *
-from APP_Libreria.forms import *
+from APP_Libreria.forms import ClienteForm
 
 
 # Create your views here.
@@ -12,24 +12,28 @@ def inicio(request):
 
 def clientes(request):
     if request.method == 'POST':
-        form=ClienteForm()
-        print("--------------------------------------")
-        print(form)
-        print("--------------------------------------")
-        if form.is_valid():
-            informacion=form.cleande_data
+        formulario=ClienteForm(request.POST)
+        print("------------11111----------------")
+        print(formulario)
+        print("------------11111----------------")
+        if formulario.is_valid():
+            print("----------------2222-----------------")
+            print(formulario)
+            print("----------------2222-----------------")
+            informacion=formulario.cleaned_data
             print(informacion)
             nombre=informacion["nombre"]
             correo=informacion["correo"]
-            cumpleanios=informacion["cumpleanios"]
-            cliente=Clientes(nombre=nombre, correo=correo, cumpleanios=cumpleanios)
+            nacimiento=informacion["nacimiento"]
+            cliente=Clientes(nombre=nombre, correo=correo, nacimiento=nacimiento)
             cliente.save()
             return render(request, "stock.html")
+        else:
+            return render(request, "empleados.html")
 
     else:
         formulario=ClienteForm()
         return render(request, "clientes.html", {"formulario":formulario})
-    return render(request, "clientes.html")
 
 def empleados(request):
     return render(request, "empleados.html")
