@@ -1,5 +1,11 @@
-{% extends “APP_Libreria/templates/inicio.html” %}
+{% extends 'inicio.html' %}
 {% load static %}
-{% block Libreria %}
-…
+{% block libreria %}
+ <form action="{% url 'clientes' %}" method="POST">{% csrf_token %}
+        <p>nombre:<input type="text" name="nombre"></p>
+        <p>correo:<input type="text" name="correo"></p>
+        <p>fecha_de_nacimiento: <input type="text" name="YYYY-MM-DD"></p>
+    <input type="submit" value="Enviar">
+
+ </form>
 {% endblock %}

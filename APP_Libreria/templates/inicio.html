@@ -2,8 +2,6 @@
 <html lang="en">
     <head>
         {% load static %}
-        
-
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -35,9 +33,6 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'resenia' %}">Reseña</a></li>
                     </ul>
                 </div>
-                {%block libreria%}
-                
-            
             </div>
         </nav>
         <!-- Masthead-->
@@ -52,6 +47,7 @@
                 </div>
             </div>
         </header>
+        {% block libreria %}
         <!-- About-->
         <section class="about-section text-center" id="">
             <div class="container px-4 px-lg-5">
@@ -114,7 +110,7 @@
             </div>
         </section>
         <!-- Signup-->
-        {%endblock%}
+        {% endblock %}
         <section class="signup-section" id="Reseña">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5">
