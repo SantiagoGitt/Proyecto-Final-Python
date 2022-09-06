@@ -29,9 +29,9 @@ def clientes(request):
             nacimiento=informacion["nacimiento"]
             cliente=Clientes(nombre=nombre, correo=correo, nacimiento=nacimiento)
             cliente.save()
-            return render(request, "stock.html")
+            return render(request, "inicio.html")
         else:
-            return render(request, "empleados.html")
+            return render(request, "clientes.html")
 
     else:
         formulario=ClienteForm()
