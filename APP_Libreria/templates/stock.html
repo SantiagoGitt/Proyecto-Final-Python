@@ -3,8 +3,15 @@
 {% block titulo %}
 <h1 class="mb-5">INVENTARIO</h1>
 {% endblock %}
-{% block cuerpo %}
-<p></p>
+{% block libreria %}
+<form action="{% url 'buscar' %}" method="GET">
 
-<p></p>
+    <input type="text" name="autor" id="autor">
+
+    <input type="submit" value="buscar">
+
+
+</form>
+
+{{ mensaje }}
 {% endblock %}

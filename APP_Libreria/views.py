@@ -10,18 +10,20 @@ from APP_Libreria.forms import ClienteForm
 def inicio(request):
     return render(request, "inicio.html")
 
+def empleados(request):
+    return render(request, "empleados.html")
+
+def resenia(request):
+    return render(request, "resenia.html")
+
+def stock(request):
+    return render(request, "stock.html")
+
 def clientes(request):
     if request.method == 'POST':
         formulario=ClienteForm(request.POST)
-        print("------------11111----------------")
-        print(formulario)
-        print("------------11111----------------")
         if formulario.is_valid():
-            print("----------------2222-----------------")
-            print(formulario)
-            print("----------------2222-----------------")
             informacion=formulario.cleaned_data
-            print(informacion)
             nombre=informacion["nombre"]
             correo=informacion["correo"]
             nacimiento=informacion["nacimiento"]
@@ -35,14 +37,11 @@ def clientes(request):
         formulario=ClienteForm()
         return render(request, "clientes.html", {"formulario":formulario})
 
-def empleados(request):
-    return render(request, "empleados.html")
 
-def stock(request):
-    return render(request, "stock.html")
+def busquedaStock(request):
+    return render(request, "busquedaStock.html")
 
-def resenia(request):
-    return render(request, "resenia.html")
-
-def clienteFormulario(request):
-    return render (request, "cursos.html")
+def buscar(request):
+    nombre=request.GET["autor"]
+    stock=Stock.objects.filter(autor=nombre)
+    return render(request, "busquedaStock.html", {"autor":stock})
