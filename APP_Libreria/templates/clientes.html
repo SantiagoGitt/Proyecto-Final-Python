@@ -4,13 +4,13 @@
 <h1 class="mb-5">REGISTRO DE CLIENTES</h1>
 {% endblock %}
 {% block libreria %}
-<p></p>
+
 <form action="{% url 'clientes' %}" method='POST'>
     {% csrf_token %}
-    <table>
+    <table  style="text-align: center">
         {{ formulario.as_table }}
     </table>
 <input style = "margin-left: 200px" type="submit" name="Enviar">
 </form>
-<p></p>
+
 {% endblock %}

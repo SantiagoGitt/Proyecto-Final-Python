@@ -42,6 +42,13 @@ def busquedaStock(request):
     return render(request, "busquedaStock.html")
 
 def buscar(request):
-    nombre=request.GET["autor"]
-    stock=Stock.objects.filter(autor=nombre)
-    return render(request, "busquedaStock.html", {"autor":stock})
+    if request.GET["autor"]:
+
+        autor=request.GET['autor']
+        nombre=Stock.objects.filter(autor=autor)
+
+        return render(request, "busquedaStock.html", {"autor":autor, "nombre":nombre})
+
+    else:
+        respuesta = "No corresponden los datos"
+        return HttpResponse(respuesta)

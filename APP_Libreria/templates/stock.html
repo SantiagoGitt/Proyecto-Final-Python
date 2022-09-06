@@ -4,12 +4,13 @@
 <h1 class="mb-5">INVENTARIO</h1>
 {% endblock %}
 {% block libreria %}
-<form action="{% url 'buscar' %}" method="GET">
+<h1 style="text-align:center">INGRESE EL AUTOR A BUSCAR</h1>
+
+<form action="{% url 'buscar' %}" method="GET"  style="text-align: center">
 
     <input type="text" name="autor" id="autor">
 
     <input type="submit" value="buscar">
-
 
 </form>
 
