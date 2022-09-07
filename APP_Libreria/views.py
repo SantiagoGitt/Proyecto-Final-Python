@@ -45,7 +45,7 @@ def buscar(request):
     if request.GET["autor"]:
 
         autor=request.GET['autor']
-        nombre=Stock.objects.filter(autor=autor)
+        nombre=Stock.objects.filter(autor__icontains=autor)
 
         return render(request, "busquedaStock.html", {"autor":autor, "nombre":nombre})
 
