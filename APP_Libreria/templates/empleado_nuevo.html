@@ -7,7 +7,7 @@
 <p></p>
 
 
-<form action="{% url 'EmpleadoNuevo' %}" method='POST'>
+<form action="{% url 'empleado_nuevo' %}" method='POST'>
     {% csrf_token %}
     <table  style="text-align: center">
         {{ formulario.as_table }}

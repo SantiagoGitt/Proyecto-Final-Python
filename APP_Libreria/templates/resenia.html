@@ -6,5 +6,18 @@
 {% block libreria %}
 <p></p>
 
+<h3 style="text-align:center">DEJE SU RESEÑA CRITICA</h3>
+<form action="{% url 'resenia' %}" method='POST'>
+    {% csrf_token %}
+    <table  style="text-align: center">
+        {{ formulario.as_table }}
+    </table>
+<input style = "margin-left: 200px" type="submit" name="Enviar">
+</form>
+
+
 <p></p>
+
+
+
 {% endblock %}

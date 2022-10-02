@@ -4,7 +4,8 @@
 <h1 class="mb-5">INVENTARIO</h1>
 {% endblock %}
 {% block libreria %}
-<h1 style="text-align:center">INGRESE EL AUTOR A BUSCAR</h1>
+<body style="background-image: url('https: //imgur .com/QWus 2Z 9jpg;');">
+<h3 style="text-align:center">INGRESE EL AUTOR A BUSCAR</h3>
 
 <form action="{% url 'buscar' %}" method="GET"  style="text-align: center">
 
@@ -14,5 +15,25 @@
 
 </form>
 
+<h3 style="text-align:center">INGRESE LIBRO A BUSCAR</h3>
+
+<form action="{% url 'buscarlibro' %}" method="GET"  style="text-align: center">
+    
+    <input type="text" name="nombre" id="nombre">
+
+    <input type="submit" value="buscar">
+
+</form>
+
+<h3 style="text-align:center">INGRESE EL GENERO A BUSCAR</h3>
+
+<form action="{% url 'buscargenero' %}" method="GET"  style="text-align: center">
+   
+    <input type="text" name="genero" id="genero">
+
+    <input type="submit" value="buscar">
+
+</form>
+</body>
 {{ mensaje }}
 {% endblock %}
