@@ -1,0 +1,17 @@
+{% extends "inicio.html" %}
+{% load static %}
+{% block titulo %}
+<h1 class="mb-5">CURSO DETALLE</h1>
+{% endblock %}
+{% block libreria %}
+
+<p>Nombre: <i>{{ Empleados.nombre }}</i></p>
+<p>Correo: <i>{{ Empleados.correo }}</i></p>
+<p>Horario: <i>{{ Empleados.horario }}</i></p>
+<p>Legajo: <i>{{ Empleados.legajo }}</i></p>
+
+<p>
+    <a href="{% url 'ListaEmpleados' %}"></a>
+</p>
+
+{% endblock %}

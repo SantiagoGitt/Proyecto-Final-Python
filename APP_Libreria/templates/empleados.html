@@ -1,10 +1,17 @@
 {% extends "inicio.html" %}
 {% load static %}
 {% block titulo %}
-<h1 class="mb-5">LOGIN EMPLEADOS</h1>
+<h1 class="mb-5">EMPLEADOS</h1>
 {% endblock %}
 {% block libreria %}
 <p></p>
-
+<body>
+    <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="{% url 'ListaEmpleados' %}">Lista de Empleados</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'empleadonuevo' %}">Nuevo Empleado</a></li>
+    </ul>
+</body>
 <p></p>
+
+
 {% endblock %}

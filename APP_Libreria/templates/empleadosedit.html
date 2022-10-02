@@ -1,0 +1,16 @@
+{% extends "inicio.html" %}
+{% load static %}
+{% block titulo %}
+<h1 class="mb-5">EDITAR EMPLEADO</h1>
+{% endblock %}
+{% block libreria %}
+<p></p>
+
+<form method='POST'>
+    {% csrf_token %}
+        {{ formulario.as_table }}
+<input style = "margin-left: 200px" type="submit" name="Enviar">
+</form>
+
+<p></p>
+{% endblock %}
