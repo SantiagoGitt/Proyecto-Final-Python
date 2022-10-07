@@ -1,0 +1,16 @@
+{% extends "inicio.html" %}
+{% load static %}
+{% block titulo %}
+<h1 class="mb-5">DETALLE STOCK</h1>
+{% endblock %}
+{% block libreria %}
+
+<p>Nombre: <i>{{ stock.nombre }}</i></p>
+<p>Autor: <i>{{ stock.autor }}</i></p>
+<p>Genero: <i>{{ stock.genero }}</i></p>
+<p>Cantidad: <i>{{ stock.cantidad }}</i></p>
+<p>
+    <a href="{% url 'stock_lista' %}"> Regresar </a>
+</p>
+
+{% endblock %}

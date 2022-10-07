@@ -4,20 +4,27 @@
 <h1 class="mb-5">RESEÑA</h1>
 {% endblock %}
 {% block libreria %}
-<p></p>
 
-<h3 style="text-align:center">DEJE SU RESEÑA CRITICA</h3>
-<form action="{% url 'resenia' %}" method='POST'>
-    {% csrf_token %}
-    <table  style="text-align: center">
-        {{ formulario.as_table }}
-    </table>
-<input style = "margin-left: 200px" type="submit" name="Enviar">
-</form>
+<ul class="navbar-nav ms-auto">
+    <li class="nav-item"><a class="nav-link" href="{% url 'resenia_nueva' %}"><h5 style="text-align:right">Presione aqui para dejar su reseña</h5></a></li>
+</ul>
+
+<h3 style="text-align:center">RESEÑAS CRITICAS</h3>
+
+<ul>
+    {% for Resenia in object_list %}
+        <li>Libro:{{ Resenia.nombre_libro }} 
+            Puntaje:{{ Resenia.puntaje }}
+            Reseña:{{ Resenia.resenia }}</li> 
+        <br>
+        
+    {% endfor %}
 
 
-<p></p>
 
+</ul>
 
 
 {% endblock %}
+
+

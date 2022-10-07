@@ -1,0 +1,37 @@
+{% extends "inicio.html" %}
+{% load static %}
+{% block titulo %}
+<h1 class="mb-5">LIBROS</h1>
+{% endblock %}
+{% block libreria %}
+
+<
+
+
+
+<ul>
+    {% for Stock in object_list %}
+        <li>
+            <p> Nombre de Libro:{{ Stock.nombre }}</p>
+            <p> 
+                <a href="{% url 'stock_detalle' Stock.id %}"> Ver </a> |
+                <a href="{% url 'stock_edit' Stock.id %}"> Editar</a> |
+                <a href="{% url 'stock_borrar' Stock.id %}"> Borrar</a>
+            </p>
+
+        </li>
+  
+        <br>    
+    
+        
+
+    {% endfor %}
+
+    
+        <p><a href="{% url 'stock_nuevo' %}"> Agregar Libro</a></p>
+
+    
+</ul>
+
+<
+{% endblock %}

@@ -10,6 +10,7 @@ from APP_Libreria.forms import EmpleadosForm
 from APP_Libreria.forms import ReseniaForm
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -21,20 +22,20 @@ def empleados(request):
     
 class Empleadoslist(ListView):
     model= Empleados
-    template_name= "Empleados_List.html"
+    template_name= "empleados.html"
 
 class Empleadodetalle(DetailView):
     model= Empleados
-    template_name= "Empleados_Detalle.html"
+    template_name= "empleados_detalle.html"
 
 class Empleadouppdate(UpdateView):
     model= Empleados
-    success_url= "empleados/empleados/list"
-    fields = ["nombre", "correo", "horario", "legajo"]
+    success_url= reverse_lazy("empleados")
+    fields = ["nombre", "correo", "cumpleanios", "horario", "legajo"]
 
 class Empleadoelimina(DeleteView):
     model= Empleados
-    success_url= "empleados/empleados/list"
+    success_url= reverse_lazy("empleados")
 
 def EmpleadoNuevo(request):
     if request.method == 'POST':
@@ -66,17 +67,18 @@ def resenias(request):
             resenia=informacion["resenia"]
             resenias=Resenia(nombre_libro=nombre_libro, puntaje=puntaje, resenia=resenia)
             resenias.save()
-            return render(request, "inicio.html")
-        else:
             return render(request, "resenia.html")
+        else:
+            return render(request, "resenia_nueva.html")
     else:
         formulario=ReseniaForm()
-    return render(request, "resenia.html", {"formulario":formulario})
+    return render(request, "resenia_nueva.html", {"formulario":formulario})
 
-def ReseniaList(request):
-    nombre_libro=Resenia.objects.all()
-    contexto={"libro":nombre_libro}
-    return render (request, "listarResenia.html", contexto)
+class ReseniaList(ListView):
+    model= Resenia
+    template_name= "resenia.html"
+
+
 
 def clientes(request):
     if request.method == 'POST':
@@ -103,7 +105,7 @@ def stock(request):
 def busquedaStock(request):
     return render(request, "busquedaStock.html")
 
-def buscar(request):
+def buscarautor(request):
     if request.GET["autor"]:
 
         autor=request.GET['autor']
@@ -120,10 +122,9 @@ def buscarlibro(request):
     if request.GET["nombre"]:
 
         nombre=request.GET['nombre']
-        autor=Stock.objects.filter(nombre__icontains=nombre)
-        genero=Stock.objects.filter(nombre__icontains=nombre)
-        
-        return render(request, "busquedaStock.html", {"Autor":autor, "Nombre":nombre, "Genero":genero})
+        nombre=Stock.objects.filter(nombre__icontains=nombre)
+                
+        return render(request, "busquedaStock.html", {"nombre":nombre})
     else:
         respuesta = "No corresponden los datos"
         return HttpResponse(respuesta)
@@ -133,34 +134,33 @@ def buscargenero(request):
 
         genero=request.GET['genero']
         nombre=Stock.objects.filter(genero__icontains=genero)
-        autor=Stock.objects.filter(genero__icontains=genero)
         
-        return render(request, "busquedaStock.html", {"Autor":autor, "Nombre":nombre, "Genero":genero})
+        return render(request, "busquedaStock.html", {"genero":genero, "nombre":nombre})
     else:
         respuesta = "No corresponden los datos"
         return HttpResponse(respuesta)
    
-class listStock(ListView):
+class Stocklist(ListView):
     model= Stock
-    template_name= "Stock_list.html"
+    template_name= "stock_lista.html"
 
-class detalleStock(DetailView):
+class Stockdetalle(DetailView):
     model= Stock
-    template_name= "Stock_detalle.html"
+    template_name= "stock_detalle.html"
 
-class nuevoStock(CreateView):
+class Stocknuevo(CreateView):
     model= Stock
-    success_url= "stock/list"
+    success_url= reverse_lazy("stock_lista")
     fields = ["nombre", "autor", "genero", "cantidad"]
 
-class uppdateStock(UpdateView):
+class Stockuppdate(UpdateView):
     model= Stock
-    success_url= "stock/list"
-    fields = ["genero", "cantidad"]
+    success_url= reverse_lazy("stock_lista")
+    fields = ["nombre", "autor", "genero", "cantidad"]
 
-class eliminaStock(DeleteView):
+class Stockelimina(DeleteView):
     model= Stock
-    success_url= "stock/list"
+    success_url= reverse_lazy("stock_lista")
     
 #def login_request (request):
 #    if request.method=="POST":

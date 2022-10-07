@@ -7,7 +7,7 @@
 <body style="background-image: url('https: //imgur .com/QWus 2Z 9jpg;');">
 <h3 style="text-align:center">INGRESE EL AUTOR A BUSCAR</h3>
 
-<form action="{% url 'buscar' %}" method="GET"  style="text-align: center">
+<form action="{% url 'buscarautor' %}" method="GET"  style="text-align: center">
 
     <input type="text" name="autor" id="autor">
 
@@ -34,6 +34,13 @@
     <input type="submit" value="buscar">
 
 </form>
+
 </body>
 {{ mensaje }}
+
+<ul class="navbar-nav ms-auto">
+    <li class="nav-item"><a class="nav-link" href="{% url 'stock_lista' %}"><h5 style="text-align:right">Listado de Libros</h5></a></li>
+</ul>
+
+
 {% endblock %}

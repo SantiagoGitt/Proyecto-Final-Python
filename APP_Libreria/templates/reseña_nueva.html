@@ -1,11 +1,12 @@
 {% extends "inicio.html" %}
 {% load static %}
 {% block titulo %}
-<h1 class="mb-5">REGISTRO DE CLIENTES</h1>
+<h1 class="mb-5">RESEÑA</h1>
 {% endblock %}
 {% block libreria %}
-
-<form action="{% url 'clientes' %}" method='post'>
+<p></p>
+<h3 style="text-align:center">DEJE SU RESEÑA CRITICA</h3>
+<form action="{% url 'resenia_nueva' %}" method='POST'>
     {% csrf_token %}
     <table  style="text-align: center">
         {{ formulario.as_table }}
@@ -13,4 +14,7 @@
 <input style = "margin-left: 200px" type="submit" name="Enviar">
 </form>
 
+<p></p>
 {% endblock %}
+
+

@@ -6,8 +6,26 @@
 {% block libreria %}
 <p></p>
 <body>
+
+    <ul>
+        {% for Empleados in object_list %}
+            <li>
+                <p> Nombre de empleado:{{ Empleados.nombre }}</p>
+                <p> 
+                    <a href="{% url 'empleados_detalle' Empleados.id %}"> Ver </a> |
+                    <a href="{% url 'empleados_edit' Empleados.id %}"> Editar</a> |
+                    <a href="{% url 'empleados_borrar' Empleados.id %}"> Borrar</a>
+                </p>
+            </li>
+            <br>  
+            
+        {% endfor %}
+    
+    
+    
+    </ul>
+
     <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="{% url 'empleados_list' %}">Lista de Empleados</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'empleado_nuevo' %}">Nuevo Empleado</a></li>
     </ul>
 </body>
