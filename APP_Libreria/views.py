@@ -8,10 +8,12 @@ from APP_Libreria.models import *
 from APP_Libreria.forms import ClienteForm
 from APP_Libreria.forms import EmpleadosForm
 from APP_Libreria.forms import ReseniaForm
-from APP_Libreria.forms import UserRegistrationForm
+#from APP_Libreria.forms import UserRegistrationForm
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm 
 from django.contrib.auth import login, logout, authenticate
 from django.urls import reverse_lazy
+#from django.contrib.auth.mixins import LoginRequiredMixin
+#from django.contrib.auth.decorators import loginR_required
 
 # Create your views here.
 
@@ -188,14 +190,16 @@ def login_request(request):
 
 def registracion(request):
     if request.method=="POST":
-       form = UserRegistrationForm(request.POST)
+       #form = UserRegistrationForm(request.POST)
+       form = UserCreationForm(request.POST)
        if form.is_valid():
-            username=form.cleaned_data.get('username')
+            username=form.cleaned_data['username']
             form.save()
             return render (request, "inicio.html", {"mensaje":f"Usuario Creado {username}"})
     else:
-        form=UserRegistrationForm
-        return render (request, "registrousuario.html", {"formulario":form})
+        #form=UserRegistrationForm
+        form=UserCreationForm
+        return render (request, "registrousuario.html", {"form":form})
 
 
 
