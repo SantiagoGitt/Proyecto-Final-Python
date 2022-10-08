@@ -6,8 +6,8 @@
 {% block libreria %}
 <p></p>
 
-<form method='post'>{% csrf_token %}
-    {{ formulario.p }}
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
     <input style = "margin-left: 200px" type="submit" name="Enviar"/>
 </form>
 
