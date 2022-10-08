@@ -6,7 +6,7 @@
 {% block libreria %}
 <p></p>
 <h3 style="text-align:center">DEJE SU RESEÑA CRITICA</h3>
-<form action="{% url 'resenia_nueva' %}" method='POST'>
+<form action="{% url 'reseña_nueva' %}" method='POST'>
     {% csrf_token %}
     <table  style="text-align: center">
         {{ formulario.as_table }}

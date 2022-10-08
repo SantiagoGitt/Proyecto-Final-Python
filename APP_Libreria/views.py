@@ -29,19 +29,18 @@ class Empleadoslist(ListView):
 
 class Empleadodetalle(DetailView):
     model= Empleados
-    template_name= "empleados_detalle.html"
+    template_name= "empleados_detalle.html"     
 
 class Empleadouppdate(UpdateView):
     model= Empleados
     success_url= reverse_lazy("empleados")
     fields = ["nombre", "correo", "cumpleanios", "horario", "legajo"]
-    template_name= "empleados_form.html"
+    template_name="empleados_form.html"
 
 class Empleadoelimina(DeleteView):
     model= Empleados
     success_url= reverse_lazy("empleados")
-    template_name= "empleados_confirm_delete.html"
-
+    template_name="empleados_confirm_delete.html"
 
 def EmpleadoNuevo(request):
     if request.method == 'POST':
@@ -75,10 +74,10 @@ def resenias(request):
             resenias.save()
             return render(request, "resenia.html")
         else:
-            return render(request, "resenia_nueva.html")
+            return render(request, "reseña_nueva.html")
     else:
         formulario=ReseniaForm()
-    return render(request, "resenia_nueva.html", {"formulario":formulario})
+    return render(request, "reseña_nueva.html", {"formulario":formulario})
 
 class ReseniaList(ListView):
     model= Resenia
@@ -103,6 +102,9 @@ def clientes(request):
     else:
         formulario=ClienteForm()
     return render(request, "clientes.html", {"formulario":formulario})
+
+def about(request):
+    return render(request, "about.html")
 
 def stock(request):
     return render(request, "stock.html")
@@ -158,7 +160,7 @@ class Stocknuevo(CreateView):
     model= Stock
     success_url= reverse_lazy("stock_lista")
     fields = ["nombre", "autor", "genero", "cantidad"]
-    template_name= "empleados_form.html"
+    template_name= "stock_form.html"
 
 class Stockuppdate(UpdateView):
     model= Stock
