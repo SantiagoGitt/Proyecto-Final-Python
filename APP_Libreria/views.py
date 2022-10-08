@@ -26,16 +26,18 @@ class Empleadoslist(ListView):
 
 class Empleadodetalle(DetailView):
     model= Empleados
-    template_name= "empleados_detalle.html"
+    template_name= "empleados_detalle.html"     
 
 class Empleadouppdate(UpdateView):
     model= Empleados
     success_url= reverse_lazy("empleados")
     fields = ["nombre", "correo", "cumpleanios", "horario", "legajo"]
+    template_name="empleados_form.html"
 
 class Empleadoelimina(DeleteView):
     model= Empleados
     success_url= reverse_lazy("empleados")
+    template_name="empleados_confirm_delete.html"
 
 def EmpleadoNuevo(request):
     if request.method == 'POST':
