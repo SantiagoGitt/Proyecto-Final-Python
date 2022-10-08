@@ -26,7 +26,7 @@ urlpatterns = [
     path("stocks/editar/<pk>", Stockuppdate.as_view(), name="stock_edit"),
     path("stocks/borrar/<pk>", Stockelimina.as_view(), name="stock_borrar"),
     path("about/", about, name="about"),
-    path("login/", login_request, name="Login"),
-    path("registroUsuario/", registracion, name="RegistroUsuario"),
-    path("logout/", LogoutView.as_view(template_name="logout.html"), name="Logout")
+    path("login/", login_request, name="login"),
+    path("registrousuario/", registracion, name="registrousuario"),
+    path("logout/", LogoutView.as_view(template_name="logout.html"), name="logout")
     ]
