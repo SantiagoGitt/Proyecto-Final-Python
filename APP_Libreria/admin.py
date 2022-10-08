@@ -3,8 +3,8 @@ from.models import *
 
 # Register your models here.
 
-admin.site.register(Clientes)
-admin.site.register(Empleados)
+admin.site.register(Cliente)
+admin.site.register(Empleado)
 admin.site.register(Stock)
 admin.site.register(Resenia)
 

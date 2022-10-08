@@ -21,28 +21,28 @@ def empleados(request):
     return render(request, "empleados.html")
     
 class Empleadoslist(ListView):
-    model= Empleados
+    model= Empleado
     template_name= "empleados.html"
 
 class Empleadodetalle(DetailView):
-    model= Empleados
+    model= Empleado
     template_name= "empleados_detalle.html"     
 
 class Empleadouppdate(UpdateView):
-    model= Empleados
+    model= Empleado
     success_url= reverse_lazy("empleados")
-    fields = ['nombre', 'correo', 'cumpleanios', 'horario', 'legajo']
+    fields = ['nombre', 'correo', 'cumpleaños', 'horario', 'legajo']
     template_name="empleados_form.html"
 
 class Empleadoelimina(DeleteView):
-    model= Empleados
+    model= Empleado
     success_url= reverse_lazy("empleados")
     template_name="empleados_confirm_delete.html"
 
 class Empleadonuevo(CreateView):
-    model= Empleados
+    model= Empleado
     success_url= reverse_lazy("empleados")
-    fields = ['nombre', 'correo', 'cumpleanios', 'horario', 'legajo']
+    fields = ['nombre', 'correo', 'cumpleaños', 'horario', 'legajo']
     template_name="empleados_form.html"
 
 
@@ -56,7 +56,7 @@ class ReseniaList(ListView):
 class Resenianueva(CreateView):
     model= Resenia
     success_url= reverse_lazy("resenia")
-    fields = ['nombre_libro', 'puntaje', 'resenia']
+    fields = ['nombre_libro', 'puntaje', 'reseña']
     template_name="resenia_form.html"
 
 
@@ -69,7 +69,7 @@ def clientes(request):
             nombre=informacion["nombre"]
             correo=informacion["correo"]
             nacimiento=informacion["nacimiento"]
-            cliente=Clientes(nombre=nombre, correo=correo, nacimiento=nacimiento)
+            cliente=Cliente(nombre=nombre, correo=correo, nacimiento=nacimiento)
             cliente.save()
             return render(request, "inicio.html")
         else:

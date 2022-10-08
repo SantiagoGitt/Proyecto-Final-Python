@@ -8,13 +8,13 @@
 <body>
 
     <ul>
-        {% for Empleados in object_list %}
+        {% for Empleado in object_list %}
             <li>
-                <p> Nombre de empleado:{{ Empleados.nombre }}</p>
+                <p> Nombre de empleado:{{ Empleado.nombre }}</p>
                 <p> 
-                    <a href="{% url 'empleados_detalle' Empleados.id %}"> Ver </a> |
-                    <a href="{% url 'empleados_edit' Empleados.id %}"> Editar</a> |
-                    <a href="{% url 'empleados_borrar' Empleados.id %}"> Borrar</a>
+                    <a href="{% url 'empleados_detalle' Empleado.id %}"> Ver </a> |
+                    <a href="{% url 'empleados_edit' Empleado.id %}"> Editar</a> |
+                    <a href="{% url 'empleados_borrar' Empleado.id %}"> Borrar</a>
                 </p>
             </li>
             <br>  

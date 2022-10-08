@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Clientes(models.Model):
+class Cliente(models.Model):
     nombre = models.CharField(max_length=64)
     correo = models.EmailField()
     nacimiento = models.DateField()
@@ -10,15 +10,15 @@ class Clientes(models.Model):
     def __str__(self):
         return f"Nombre:{self.nombre} - Correo:{self.correo} - Nacimiento:{self.nacimiento}"
 
-class Empleados(models.Model):
+class Empleado(models.Model):
     nombre = models.CharField(max_length=64)
     correo = models.EmailField()
-    cumpleanios = models.DateField()
+    cumpleaños = models.DateField()
     horario = models.IntegerField()
     legajo = models.IntegerField()
 
     def __str__(self):
-        return f"Nombre:{self.nombre} - Correo:{self.correo} - Cumpleaños:{self.cumpleanios} - Horario:{self.horario} - Legajo:{self.legajo}"
+        return f"Nombre:{self.nombre} - Correo:{self.correo} - Cumpleaños:{self.cumpleaños} - Horario:{self.horario} - Legajo:{self.legajo}"
 
 class Stock(models.Model):
     nombre = models.CharField(max_length=64)
@@ -32,7 +32,7 @@ class Stock(models.Model):
 class Resenia(models.Model):
     nombre_libro = models.CharField(max_length=64)
     puntaje = models.IntegerField()
-    resenia = models.TextField(max_length=280)
+    reseña = models.TextField(max_length=280)
 
     def __str__(self):
-        return f"Nombre:{self.nombre_libro} - Puntaje:{self.puntaje} - Reseña:{self.resenia}"
+        return f"Nombre:{self.nombre_libro} - Puntaje:{self.puntaje} - Reseña:{self.reseña}"
