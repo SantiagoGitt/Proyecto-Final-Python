@@ -32,10 +32,13 @@ class Empleadouppdate(UpdateView):
     model= Empleados
     success_url= reverse_lazy("empleados")
     fields = ["nombre", "correo", "cumpleanios", "horario", "legajo"]
+    template_name= "empleados_form.html"
 
 class Empleadoelimina(DeleteView):
     model= Empleados
     success_url= reverse_lazy("empleados")
+    template_name= "empleados_confirm_delete.html"
+
 
 def EmpleadoNuevo(request):
     if request.method == 'POST':
@@ -152,52 +155,49 @@ class Stocknuevo(CreateView):
     model= Stock
     success_url= reverse_lazy("stock_lista")
     fields = ["nombre", "autor", "genero", "cantidad"]
+    template_name= "empleados_form.html"
 
 class Stockuppdate(UpdateView):
     model= Stock
     success_url= reverse_lazy("stock_lista")
     fields = ["nombre", "autor", "genero", "cantidad"]
+    template_name= "stock_form.html"
 
 class Stockelimina(DeleteView):
     model= Stock
     success_url= reverse_lazy("stock_lista")
+    template_name= "stock_confirm_delete.html"
     
-#def login_request (request):
-#    if request.method=="POST":
-#        form = AuthenticationForm(request, data=request.POST)
+def login_request(request):
+    if request.method=="POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            usuario=form.cleaned_data.get('username')
+            #request.POST("username")
+            contraseña=form.cleaned_data.get('password') #request.POST("password")
+            user= authenticate(username=usuario,password=contraseña)
+            if user is not None:
+                login(request, user)
+                return render (request, "inicio.html", {"mensaje":f"Bienvenido {usuario}"})       
+            else:
+                return render (request, "inicio.html", {"mensaje":f"Error - Datos Erroneos"})
+        else:
+            return render (request, "inicio.html", {"mensaje":f"Error - Datos Erroneos"})
+    form = AuthenticationForm()
+    return render (request, "login.html", {'form':form})
 
-#        if form.is_valid():
-#            usuario=form.cleaned_data.get("username")
-#            contraseña=form.cleaned_data.get("password")
-#
-#            user= authenticate(username=usuario,password=contraseña)
+def registracion (request):
+    if request.method=="POST":
+       form = UserCreationForm (request, data=request.POST)
 
-#            if user is not None:
-#                login(request, user)
+       if form.is_valid():
+            usuario=form.cleaned_data["usuario"]
+            form.save()
 
-#                return render (request, "inicio.html", {"mensaje":f"Bienvenido {usuario}"})
+            return render (request, "inicio.html", {"mensaje":f"Usuario Creado {usuario}"})
+
+    else:
+        form=UserCreationForm
             
-#            else:
-#                return render (request, "inicio.html", {"mensaje":f"Error - Datos Incorectos"})
-
-#        else:
-#                return render (request, "inicio.html", {"mensaje":f"Error - Formulario Erroneo"})
-
-#    form = AuthenticationForm()
-#    return render (request, "login.html", {"form":form})
-
-#def registracion (request):
-#    if request.method=="POST":
-#       form = UserCreationForm (request, data=request.POST)
-
-#       if form.is_valid():
-#            usuario=form.cleaned_data["usuario"]
-#            form.save()
-
-#            return render (request, "inicio.html", {"mensaje":f"Usuario Creado {usuario}"})
-
-#    else:
-#        form=UserCreationForm
-            
-#    return render (request, "registroUsuario.html", {"form":form})
+    return render (request, "registroUsuario.html", {"form":form})
 

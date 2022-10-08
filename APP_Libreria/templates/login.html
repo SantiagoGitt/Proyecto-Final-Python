@@ -1,14 +1,15 @@
 {% extends "inicio.html" %}
 {% load static %}
 {% block titulo %}
-<h1 class="mb-5">LOG IN</h1>
+<h1 class="mb-5">LOGIN</h1>
 {% endblock %}
 {% block libreria %}
 <p></p>
 
-<form action=="" method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
+<form action="" method="POST">{% csrf_token %}
+             
+        {{ form.as_p }}
+        
 
         <button type="submit"> Iniciar Sesión</button>
 </form>
