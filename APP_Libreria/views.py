@@ -8,7 +8,8 @@ from APP_Libreria.models import *
 from APP_Libreria.forms import ClienteForm
 from APP_Libreria.forms import EmpleadosForm
 from APP_Libreria.forms import ReseniaForm
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from APP_Libreria.forms import UserRegistrationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm 
 from django.contrib.auth import login, logout, authenticate
 from django.urls import reverse_lazy
 
@@ -173,31 +174,28 @@ def login_request(request):
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             usuario=form.cleaned_data.get('username')
-            #request.POST("username")
-            contraseña=form.cleaned_data.get('password') #request.POST("password")
+            contraseña=form.cleaned_data.get('password') 
             user= authenticate(username=usuario,password=contraseña)
             if user is not None:
                 login(request, user)
                 return render (request, "inicio.html", {"mensaje":f"Bienvenido {usuario}"})       
             else:
-                return render (request, "inicio.html", {"mensaje":f"Error - Datos Erroneos"})
+                return render (request, "login.html", {"mensaje":"Error - Datos Erroneos"})
         else:
-            return render (request, "inicio.html", {"mensaje":f"Error - Datos Erroneos"})
+            return render (request, "login.html", {"mensaje":"Error - Datos Erroneos"})
     form = AuthenticationForm()
     return render (request, "login.html", {'form':form})
 
-def registracion (request):
+def registracion(request):
     if request.method=="POST":
-       form = UserCreationForm (request, data=request.POST)
-
+       form = UserRegistrationForm(request.POST)
        if form.is_valid():
-            usuario=form.cleaned_data["usuario"]
+            username=form.cleaned_data.get('username')
             form.save()
-
-            return render (request, "inicio.html", {"mensaje":f"Usuario Creado {usuario}"})
-
+            return render (request, "inicio.html", {"mensaje":f"Usuario Creado {username}"})
     else:
-        form=UserCreationForm
-            
-    return render (request, "registroUsuario.html", {"form":form})
+        form=UserRegistrationForm
+        return render (request, "registrousuario.html", {"formulario":form})
+
+
 

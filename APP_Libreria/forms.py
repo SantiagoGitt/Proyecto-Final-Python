@@ -1,4 +1,7 @@
+from dataclasses import fields
 from django import forms
+from django.contrib.auth.forms import UserCreationForm, User
+
 
 class ClienteForm(forms.Form):
     nombre = forms.CharField(max_length=64)
@@ -22,3 +25,13 @@ class ReseniaForm(forms.Form):
     nombre_libro = forms.CharField(max_length=64)
     puntaje = forms.IntegerField()
     resenia = forms.CharField(max_length=280)
+
+class UserRegistrationForm(UserCreationForm):
+    email=forms.EmailField()
+    password1 =forms.CharField(label='Constraseña',widget=forms.PasswordInput)
+    password1 =forms.CharField(label='Repetir Contraseña',widget=forms.PasswordInput)
+    
+    class Meta:
+        model = User
+        field = ['username','email','password1','password2']
+        help_text = {k:"" for k in fields}

@@ -9,8 +9,10 @@
         {% csrf_token %}
         {{form.as_p}}
 
-        <button type="submit"> Iniciar Sesión</button>
+        <button type="submit"> Registrar</button>
 </form>
+
+<h5>{{ mensaje }}</h5>
 
 <p></p>
 {% endblock %}
