@@ -32,9 +32,14 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'empleados' %}">Empleados</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'resenia' %}">Reseña</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                        
+                        {% if user.is_authenticated %}
+                        <h4>Hola {{ user.username }}</h4>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'registrousuario' %}">Registrarse</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

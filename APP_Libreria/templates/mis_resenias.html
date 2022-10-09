@@ -1,0 +1,34 @@
+{% extends "inicio.html" %}
+{% load static %}
+{% block titulo %}
+<h1 class="mb-5">RESEÑA</h1>
+{% endblock %}
+{% block libreria %}
+
+<ul>
+    <li>
+        <p>
+
+            Libro:{{ Resenia.nombre_libro }} |
+            Puntaje:{{ Resenia.puntaje }} |
+            Reseña:{{ Resenia.reseña }} |
+            Usuario:{{ Resenia.user}}
+
+        <a href="{% url 'resenia_edit' Resenia.id %}"> Editar</a> |
+        <a href="{% url 'resenia_borrar' Resenia.id %}"> Borrar</a>
+        </p>
+    </li>
+    <br>
+
+
+    {% endfor %}
+
+{% else %}
+<p style="text-align:center">NO SE ENCONTRARON LIBROS</p>
+
+{% endif %}
+
+</ul>
+
+{% endblock %}
+

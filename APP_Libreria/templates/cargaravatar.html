@@ -1,0 +1,17 @@
+{% extends "inicio.html" %}
+{% load static %}
+{% block titulo %}
+<h1 class="mb-5">CARGAR AVATAR</h1>
+{% endblock %}
+{% block libreria %}
+<p></p>
+
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    
+        {{ form.as_p }}
+    
+    <input style = "margin-left: 200px" type="submit" name="Enviar"/>
+</form>
+
+<p></p>
+{% endblock %}

@@ -15,10 +15,21 @@
 
 <ul>
     {% for Resenia in object_list %}
-        <li>Libro:{{ Resenia.nombre_libro }} 
-            Puntaje:{{ Resenia.puntaje }}
-            Reseña:{{ Resenia.reseña }}</li> 
+        <li>
+            <p>
+            Libro:{{ Resenia.nombre_libro }} |
+            Puntaje:{{ Resenia.puntaje }} |
+            Reseña:{{ Resenia.reseña }} |
+            Usuario:{{ Resenia.user}}
+            </p>
+            <p>
+            <a href="{% url 'resenia_edit' Resenia.id %}"> Editar</a> |
+            <a href="{% url 'resenia_borrar' Resenia.id %}"> Borrar</a>
+            </p>
+        </li>
         <br>
+
+        
         
     {% endfor %}
 </ul>

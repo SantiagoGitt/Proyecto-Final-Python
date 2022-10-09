@@ -1,4 +1,6 @@
+from distutils.command.upload import upload
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -31,9 +33,16 @@ class Stock(models.Model):
         return f"Nombre:{self.nombre} - Autor:{self.autor} - Genero:{self.genero} - Cantidad:{self.cantidad} - Pequeña_reseña:{self.pequeña_reseña}"
 
 class Resenia(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     nombre_libro = models.CharField(max_length=64)
     puntaje = models.IntegerField()
     reseña = models.TextField(max_length=280)
 
     def __str__(self):
-        return f"Nombre:{self.nombre_libro} - Puntaje:{self.puntaje} - Reseña:{self.reseña}"
+        return f"Usuario: {self.user} - Nombre:{self.nombre_libro} - Puntaje:{self.puntaje} - Reseña:{self.reseña}"
+
+class Avatar(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    imagen= models.ImageField(upload_to="avatares",null=True,blank=True)
+    def __str__(self):
+        return f"User:{self.user} - Imagen:{self.imagen}"

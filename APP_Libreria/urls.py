@@ -8,6 +8,8 @@ urlpatterns = [
     path("", inicio, name="inicio"),
     path("clientes/", clientes, name="clientes"),
     path("resenia", ReseniaList.as_view(), name="resenia"),
+    path("resenia/editar/<pk>", Reseniauppdate.as_view(), name="resenia_edit"),
+    path("resenia/borrar/<pk>", Reseniaelimina.as_view(), name="resenia_borrar"),
     path("resenia/nuevo/", Resenianueva.as_view(), name="resenia_nueva"),
     #path("empleados/", empleados, name="empleados"),
     path("empleados", Empleadoslist.as_view(), name="empleados"),
@@ -28,5 +30,7 @@ urlpatterns = [
     path("about/", about, name="about"),
     path("login/", login_request, name="login"),
     path("registrousuario/", registracion, name="registrousuario"),
-    path("logout/", LogoutView.as_view(template_name="logout.html"), name="logout")
+    path("logout/", LogoutView.as_view(template_name="logout.html"), name="logout"),
+    path("editarperfil/", EditarPerfil, name="editarperfil"),
+    path("agregaravatar/", cargaravatar, name="agregaravatar")
     ]
