@@ -25,9 +25,10 @@ class Stock(models.Model):
     autor = models.CharField(max_length=64)
     genero = models.CharField(max_length=64)
     cantidad = models.IntegerField()
+    pequeña_reseña = models.TextField(max_length=64)
 
     def __str__(self):
-        return f"Nombre:{self.nombre} - Autor:{self.autor} - Genero:{self.genero} - Cantidad:{self.cantidad}"
+        return f"Nombre:{self.nombre} - Autor:{self.autor} - Genero:{self.genero} - Cantidad:{self.cantidad} - Pequeña_reseña:{self.pequeña_reseña}"
 
 class Resenia(models.Model):
     nombre_libro = models.CharField(max_length=64)

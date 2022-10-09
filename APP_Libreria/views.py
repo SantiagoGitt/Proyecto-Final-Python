@@ -135,13 +135,13 @@ class Stockdetalle(DetailView):
 class Stocknuevo(CreateView):
     model= Stock
     success_url= reverse_lazy("stock_lista")
-    fields = ["nombre", "autor", "genero", "cantidad"]
+    fields = ["nombre", "autor", "genero", "cantidad","pequeña_reseña"]
     template_name= "stock_form.html"
 
 class Stockuppdate(UpdateView):
     model= Stock
     success_url= reverse_lazy("stock_lista")
-    fields = ['nombre', 'autor', 'genero', 'cantidad']
+    fields = ['nombre', 'autor', 'genero', 'cantidad',"pequeña_reseña"]
     template_name= "stock_form.html"
 
 class Stockelimina(DeleteView):
