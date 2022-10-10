@@ -6,7 +6,6 @@ from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path("", inicio, name="inicio"),
-    path("clientes/", clientes, name="clientes"),
     path("resenia", ReseniaList.as_view(), name="resenia"),
     path("resenia/editar/<pk>", Reseniauppdate.as_view(), name="resenia_edit"),
     path("resenia/borrar/<pk>", Reseniaelimina.as_view(), name="resenia_borrar"),

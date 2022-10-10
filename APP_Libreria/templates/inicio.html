@@ -28,13 +28,12 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="{% url 'stock' %}">Stock</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'clientes' %}">Clientes</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'empleados' %}">Empleados</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'resenia' %}">Reseña</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
                         
                         {% if user.is_authenticated %}
-                        <h4>Hola {{ user.username }}</h4>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'editarperfil' %}">Editar Perfil</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                         {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'registrousuario' %}">Registrarse</a></li>
@@ -56,6 +55,10 @@
                 </div>
             </div>
         </header>{% block libreria %}
+        {% if user.is_authenticated %}
+            <img style="margin: auto; display: block;" height="30px" src="{{ avatar }}" alt="...">
+            <h4 style="text-align: center; ">Hola {{ user.username }}</h4>
+        {% endif %}
         <!-- About-->
         <section class="about-section text-center" id="">
             <div class="container px-4 px-lg-5">

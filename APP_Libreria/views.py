@@ -55,12 +55,12 @@ class ReseniaList(ListView):
 
 class Reseniaelimina(LoginRequiredMixin,DeleteView):
     model= Resenia
-    #success_url= reverse_lazy("resenia")
+    success_url= reverse_lazy("resenia")
     template_name="resenia_confirm_delete.html"
 
 class Reseniauppdate(LoginRequiredMixin,UpdateView):
     model= Resenia
-    #success_url= reverse_lazy("resenia")
+    success_url= reverse_lazy("resenia")
     fields = ['nombre_libro', 'puntaje', 'reseña']
     template_name="resenia_form.html"
 
@@ -69,26 +69,9 @@ class Resenianueva(LoginRequiredMixin,CreateView):
     success_url= reverse_lazy("resenia")
     fields = ['nombre_libro', 'puntaje', 'reseña']
     template_name="resenia_form.html"
-
-
-
-def clientes(request):
-    if request.method == 'POST':
-        formulario=ClienteForm(request.POST)
-        if formulario.is_valid():
-            informacion=formulario.cleaned_data
-            nombre=informacion["nombre"]
-            correo=informacion["correo"]
-            nacimiento=informacion["nacimiento"]
-            cliente=Cliente(nombre=nombre, correo=correo, nacimiento=nacimiento)
-            cliente.save()
-            return render(request, "inicio.html")
-        else:
-            return render(request, "clientes.html")
-
-    else:
-        formulario=ClienteForm()
-    return render(request, "clientes.html", {"formulario":formulario})
+    def form_valid(self,form):
+        Resenia.objects.create(nombre_libro= self.request.POST['nombre_libro'], user= user)
+        return redirect(self.success_url)
 
 def about(request):
     return render(request, "about.html")
@@ -171,9 +154,9 @@ def login_request(request):
                 login(request, user)
                 return render (request, "inicio.html")       
             else:
-                return render (request, "login.html", {"mensaje":"Error - Datos Erroneos"})
+                return render (request, "loginerror.html", {"mensaje":"Error - Datos Erroneos"})
         else:
-            return render (request, "login.html", {"mensaje":"Error - Datos Erroneos"})
+            return render (request, "loginerror.html", {"mensaje":"Error - Datos Erroneos"})
     form = AuthenticationForm()
     return render (request, "login.html", {'form':form})
 
@@ -183,9 +166,9 @@ def registracion(request):
         if form.is_valid():
             username=form.cleaned_data['username']
             form.save()
-            return render(request, "inicio.html", {"mensaje":f"Usuario Creado {username}"})
+            return render(request, "registrocorrecto.html", {"mensaje":f"Usuario Creado {username}"})
         else:
-            return render (request, "registrousuario.html", {"mensaje":f"Datos Erroneos"})    
+            return render (request, "registroerror.html", {"mensaje":f"Datos Erroneos"})    
     else:
         form=UserRegistrationForm
         return render(request, "registrousuario.html", {"form":form})
@@ -197,22 +180,26 @@ def EditarPerfil(request):
     if request.method=="POST":
         form = UserEditForm(request.POST)
         if form.is_valid():
-            informacion=form.cleaned_data['username']
+            informacion=form.cleaned_data
+            usuario.first_name=informacion['first_name']
+            usuario.last_name=informacion['last_name']
             usuario.email=informacion['email']
-            usuario.password1=informacion['password1']
-            usuario.password2=informacion['password2']
             usuario.save()
-            return render (request, "inicio.html", {"mensaje":f"Usuario Modificado Correctamente"})
+            return render (request, "editarperfilCorrecto.html", {"mensaje":f"Usuario Modificado Correctamente"})
         else:
-            return render (request, "editarperfil.html", {"mensaje":f"Formularios Erroneo"})
+            return render (request, "editarperfilError.html", {"mensaje":f"Formularios Erroneo"})
     else:
         form=UserEditForm(instance=usuario)
         return render(request, "editarperfil.html", {"form":form,"usuario":usuario})
 
-#@login_required
-#def inicio(request):
-#    avatares= Avatar.objects.filter(user=request.user.id)
-#    return render(request, "inicio.html",{"url":avatares[0].image.url})
+@login_required
+def inicio(request):
+    avatares= Avatar.objects.filter(user=request.user.id)
+    if len(avatares)!=0:
+            avatar=avatares[0].imagen.url
+    else:
+        avatar=""
+    return render (request, "inicio.html",{"avatar":avatar})
 
 @login_required
 def cargaravatar(request):

@@ -1,17 +1,9 @@
 from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 # Create your models here.
-
-class Cliente(models.Model):
-    nombre = models.CharField(max_length=64)
-    correo = models.EmailField()
-    nacimiento = models.DateField()
-
-    def __str__(self):
-        return f"Nombre:{self.nombre} - Correo:{self.correo} - Nacimiento:{self.nacimiento}"
-
 class Empleado(models.Model):
     nombre = models.CharField(max_length=64)
     correo = models.EmailField()
@@ -33,7 +25,8 @@ class Stock(models.Model):
         return f"Nombre:{self.nombre} - Autor:{self.autor} - Genero:{self.genero} - Cantidad:{self.cantidad} - Pequeña_reseña:{self.pequeña_reseña}"
 
 class Resenia(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,)
     nombre_libro = models.CharField(max_length=64)
     puntaje = models.IntegerField()
     reseña = models.TextField(max_length=280)
