@@ -20,13 +20,13 @@ class Stock(models.Model):
     genero = models.CharField(max_length=64)
     cantidad = models.IntegerField()
     pequeña_reseña = models.TextField(max_length=300)
+    imagen= models.ImageField(upload_to="imgstock",null=True,blank=True)
 
     def __str__(self):
-        return f"Nombre:{self.nombre} - Autor:{self.autor} - Genero:{self.genero} - Cantidad:{self.cantidad} - Pequeña_reseña:{self.pequeña_reseña}"
+        return f"Nombre:{self.nombre} - Autor:{self.autor} - Genero:{self.genero} - Cantidad:{self.cantidad} - Pequeña_reseña:{self.pequeña_reseña} - Imagen_stock:{self.imagen}"
 
 class Resenia(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     nombre_libro = models.CharField(max_length=64)
     puntaje = models.IntegerField()
     reseña = models.TextField(max_length=280)
