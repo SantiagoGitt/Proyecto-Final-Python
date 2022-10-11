@@ -9,11 +9,11 @@
 
 <ul>
     {% for stock in nombre %}
-        <li> {{ stock.nombre}}<br>
-             {{ stock.autor }}<br>
-              {{ stock.genero}}<br>
-              Libros en stock: {{ stock.cantidad}}<br>
-             Reseña: {{ stock.pequeña_reseña }}</li>
+        <li>Libro: {{ stock.nombre}}<br>
+            Autor: {{ stock.autor }}<br>
+            Genoro:{{ stock.genero}}<br>
+            Libros en stock: {{ stock.cantidad}}<br>
+            Reseña: {{ stock.pequeña_reseña }}</li>
         
     {% endfor %}
 

@@ -25,3 +25,12 @@ class UserEditForm(UserCreationForm):
 
 class AvatarForm(forms.Form):
     imagen= forms.ImageField()
+
+class ReseniaForm(forms.Form):
+    nombre_libro = forms.CharField(max_length=64)
+    puntaje = forms.IntegerField()
+    reseña = forms.CharField(max_length=280)
+
+class ImagenForm(forms.Form):
+    nombre_libro= forms.CharField(max_length=64)
+    imagen= forms.ImageField()

@@ -1,7 +1,7 @@
 {% extends "inicio.html" %}
 {% load static %}
 {% block titulo %}
-<h1 class="mb-5">CARGAR AVATAR</h1>
+<h1 class="mb-5">AGREGAR IMAGEN</h1>
 {% endblock %}
 {% block libreria %}
 <p></p>
@@ -10,7 +10,8 @@
     
         {{ form.as_p }}
     
-    <input style = "margin-left: 200px" type="submit" name="Enviar"/>
+    <button type="submit">Agregar/Cambiar Imagen</button> 
+    <button type="submit"><a href="{% url 'eliminaavatar' %}"> Borrar</a></button> 
 </form>
 
 <p></p>

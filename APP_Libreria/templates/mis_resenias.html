@@ -1,34 +1,39 @@
 {% extends "inicio.html" %}
 {% load static %}
 {% block titulo %}
-<h1 class="mb-5">RESEÑA</h1>
+<h1 class="mb-5">MIS RESEÑAS</h1>
 {% endblock %}
 {% block libreria %}
 
+{% if lista %}
 <ul>
-    <li>
-        <p>
+    {% for Resenia in lista %}
+        <li>
+            <p>
+                Libro:{{ Resenia.nombre_libro }} |
+                Puntaje:{{ Resenia.puntaje }} |
+                Reseña:{{ Resenia.reseña }} |
+                Usuario:{{ Resenia.user}}
 
-            Libro:{{ Resenia.nombre_libro }} |
-            Puntaje:{{ Resenia.puntaje }} |
-            Reseña:{{ Resenia.reseña }} |
-            Usuario:{{ Resenia.user}}
-
-        <a href="{% url 'resenia_edit' Resenia.id %}"> Editar</a> |
-        <a href="{% url 'resenia_borrar' Resenia.id %}"> Borrar</a>
-        </p>
-    </li>
-    <br>
-
-
-    {% endfor %}
-
+        
+            </p>
+            <p>
+                <a href="{% url 'resenia_editar' Resenia.id %}"> Editar</a> |
+                <a href="{% url 'resenia_borrar' Resenia.id %}"> Borrar</a>      
+            </p>
+    
+    
+        </li>
+        <br>
+    {% endfor%}
 {% else %}
-<p style="text-align:center">NO SE ENCONTRARON LIBROS</p>
+<p style="text-align:center">NO HAY RESEÑAS CARGADAS</p>
 
 {% endif %}
 
 </ul>
+
+<a class="nav-link" href="{% url 'resenia_nueva' %}"><h6 style="text-align:left;color:black">Dejar su reseña aqui</h6></a>
 
 {% endblock %}
 

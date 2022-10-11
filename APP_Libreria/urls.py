@@ -6,11 +6,16 @@ from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path("", inicio, name="inicio"),
-    path("resenia", ReseniaList.as_view(), name="resenia"),
-    path("resenia/editar/<pk>", Reseniauppdate.as_view(), name="resenia_edit"),
-    path("resenia/borrar/<pk>", Reseniaelimina.as_view(), name="resenia_borrar"),
-    path("resenia/nuevo/", Resenianueva.as_view(), name="resenia_nueva"),
-    #path("empleados/", empleados, name="empleados"),
+    path("resenia", ReseniaList, name="resenia"),
+    path("resenia/resenia_nueva/", Resenianueva, name="resenia_nueva"),
+    path("resenia/mis_resenias/", MisResenias, name="mis_resenias"),
+    path("resenia/mis_resenias/editar/<id>", Reseniauppdate, name="resenia_editar"),
+    path("borrar/<id>", Reseniaelimina, name="resenia_borrar"),
+    path("LibrosFavoritos/", LibrosFavoritos, name="LibrosFavoritos"),
+    path("LibrosFavoritos/editar/<id>", LibroFavoritoUppdate, name="LibroFavoritoEdita"),
+    path("LibrosFavoritos/borrar/<id>", LibroFavoritoElimina, name="LibroFavoritoBorra"),
+    path("LibrosFavoritos/LibroFavoritoNuevo/", SubirLibroFavorito, name="LibroFavoritoNuevo"),
+    path("empleados/", empleados, name="empleados"),
     path("empleados", Empleadoslist.as_view(), name="empleados"),
     path("empleados/<pk>", Empleadodetalle.as_view(), name="empleados_detalle"),
     path("empleados/editar/<pk>", Empleadouppdate.as_view(), name="empleados_edit"),
@@ -31,5 +36,6 @@ urlpatterns = [
     path("registrousuario/", registracion, name="registrousuario"),
     path("logout/", LogoutView.as_view(template_name="logout.html"), name="logout"),
     path("editarperfil/", EditarPerfil, name="editarperfil"),
-    path("agregaravatar/", cargaravatar, name="agregaravatar")
+    path("cargaravatar/", cargaravatar, name="cargaravatar"),
+    path("eliminaavatar/", eiiminaavatar, name="eliminaavatar")
     ]

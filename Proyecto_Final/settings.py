@@ -129,3 +129,4 @@ LOGIN_URL = '/AppLibreria/login'
 #para imagenes
 MEDIA_URL='/media/'
 MEDIA_ROOT= os.path.join(BASE_DIR,'media')
+

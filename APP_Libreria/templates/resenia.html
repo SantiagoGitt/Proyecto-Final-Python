@@ -7,28 +7,33 @@
 
 
 
+{% if user.is_authenticated %}
 <ul class="navbar-nav ms-auto">
-    <li class="nav-item"><a class="nav-link" href="{% url 'resenia_nueva' %}"><h5 style="text-align:right">Dejar su reseña aqui</h5></a></li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'mis_resenias' %}"><h6 style="text-align:right;color:black">Mis reseñas</h6></a>
+    </li>
+
 </ul>
+{% endif %}
 
 <h3 style="text-align:center">RESEÑAS CRITICAS</h3>
 
 <ul>
-    {% for Resenia in object_list %}
+    {% for Resenia in lista %}
+        
         <li>
             <p>
+               
             Libro:{{ Resenia.nombre_libro }} |
             Puntaje:{{ Resenia.puntaje }} |
             Reseña:{{ Resenia.reseña }} |
             Usuario:{{ Resenia.user}}
             </p>
-            <p>
-            <a href="{% url 'resenia_edit' Resenia.id %}"> Editar</a> |
-            <a href="{% url 'resenia_borrar' Resenia.id %}"> Borrar</a>
-            </p>
+
         </li>
         <br>
-
+        
+            
         
         
     {% endfor %}

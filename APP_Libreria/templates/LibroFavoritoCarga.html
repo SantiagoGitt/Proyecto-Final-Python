@@ -1,0 +1,17 @@
+{% extends "inicio.html" %}
+{% load static %}
+{% block titulo %}
+<h1 class="mb-5">CARGAR LIBRO FAVORITO</h1>
+{% endblock %}
+{% block libreria %}
+<p></p>
+
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    
+        {{ form.as_p }}
+    
+    <button type="submit">Agregar/Cambiar Imagen</button> 
+</form>
+
+<p></p>
+{% endblock %}

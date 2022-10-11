@@ -6,5 +6,6 @@ admin.site.register(Empleado)
 admin.site.register(Stock)
 admin.site.register(Resenia)
 admin.site.register(Avatar)
+admin.site.register(Imagen)
 
 

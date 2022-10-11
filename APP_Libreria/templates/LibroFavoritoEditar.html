@@ -1,0 +1,21 @@
+{% extends "inicio.html" %}
+{% load static %}
+{% block titulo %}
+<h1 class="mb-5">EDICION DE LIBRO FAVORITO</h1>
+{% endblock %}
+{% block libreria %}
+
+<body>
+
+    
+    <form action="{% url 'LibroFavoritoEditar' %}" method="post"  enctype="multipart/form-data">{% csrf_token %}
+        
+        <table>
+            {{ form.as_table }}
+        </table>
+
+        <input style = "margin-left: 200px" type="submit" name="Enviar"/>
+    </form>
+</body>
+
+{% endblock %}
